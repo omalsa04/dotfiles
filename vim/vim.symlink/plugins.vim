@@ -1,0 +1,30 @@
+filetype off
+
+" """"
+" Run :BundleInstall to install/update all plugins from github
+" """"
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+
+" let vundle manage vundle
+Plugin 'gmarik/vundle'
+
+" utilities
+Plugin 'kien/ctrlp.vim' " file searcher
+Plugin 'scrooloose/nerdtree' " file browser
+Plugin 'Xuyuanp/nerdtree-git-plugin' " enables git in nerdtree
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-surround'
+Plugin 'benmills/vimux'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+
+" colorschemes
+Plugin 'chriskempson/base16-vim'
+
+call vundle#end()
+filetype plugin indent on
