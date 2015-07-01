@@ -50,7 +50,7 @@ setw -g pane-base-index 1
 ######################
 
 
-ad config file
+# relodd config file
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 
 # quickly open a new window

@@ -31,6 +31,10 @@ set shiftwidth=4 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 set completeopt+=longest " selects the longest/best match when completion menu pops up
 
+" better indent in visual mode (stop vim from deselecting on an indentation change)
+vnoremap < <gv
+vnoremap > >gv
+
 if has('mouse')
     set mouse=a
     set ttymouse=xterm2
@@ -141,7 +145,6 @@ set showbreak=… " show ellipsis at breaking
 set autoindent " automatically set indent of new line
 set smartindent
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,8 +180,10 @@ set laststatus=2 " show the satus line all the time
 " shortcut to save
 nmap <leader>, :w<cr>
 
-" disable Ex mode
-noremap Q <NOP>
+" disable Ex mode, and remap to format paragraphs
+"" noremap Q <NOP>
+vmap Q gq
+nmap Q gqap
 
 " set paste toggle
 set pastetoggle=<F6>
@@ -292,6 +297,10 @@ nmap <silent> <leader>r :CtrlPBuffer<cr>
 let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
 
 " Fugitive Shortcuts
 nmap <silent> <leader>gs :Gstatus<cr>
