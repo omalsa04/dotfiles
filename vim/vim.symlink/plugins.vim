@@ -22,6 +22,13 @@ Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
+Plugin 'davidhalter/jedi-vim' " Python auto-completion
+
+" Allows virtualenv environment switching
+" using :VirtualEnvDeactivate
+"		:VirtualEnvList
+"		:VirtualEnvActivate <name>
+Plugin 'jmcantrell/vim-virtualenv'
 
 " colorschemes
 Plugin 'chriskempson/base16-vim'

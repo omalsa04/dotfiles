@@ -136,6 +136,7 @@ execute "colorscheme ".$THEME
 "" set number " show line numbers
 set relativenumber " show relative line numbers
 set number " show the current line number
+" set colorcolumn=79
 
 set wrap " turn on line wrapping
 set wrapmargin=8 " wrap lines when coming within n characters from side
@@ -281,7 +282,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeQuitOnOpen=1
 " show hidden files in NERDTree
 let NERDTreeShowHidden=1
 " remove some files by extension
@@ -292,8 +293,9 @@ nmap <silent> <leader>k :NERDTreeToggle<cr>
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " map fuzzyfinder (CtrlP) plugin
-nmap <silent> <leader>t :CtrlP<cr>
-nmap <silent> <leader>r :CtrlPBuffer<cr>
+" nmap <silent> <leader>t :CtrlP<cr>
+nmap <silent> <leader>t :CtrlPCurWD<cr>
+nmap <silent> <leader>tb :CtrlPBuffer<cr>
 let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
@@ -320,10 +322,15 @@ nmap <leader>s :SyntasticToggleMode<cr>
 "             \ 'file': '\.exe$\|\.so$'
 "             \ }
 " only show files that are not ignored by git
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " search the nearest ancestor that contains .git, .hg, .svn
-let g:ctrlp_working_path_mode = 2
+" let g:ctrlp_working_path_mode = 2
+
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
 
 
 " airline options
@@ -332,9 +339,12 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16'
 
+" Enable virtualenv in airline and display in section_x
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline_section_x = airline#section#create('%{virtualenv#statusline()}')
+
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
-
 
 let g:SuperTabCrMapping = 0
 
@@ -348,4 +358,18 @@ if (has("gui_running"))
     let g:airline_theme='solarized'
 endif
 
-call ApplyLocalSettings(expand('.'))
+" Settings for jedi-vim
+" git clone git://github.com/davidhalter/jedi-vim.git
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" map <F4> :CondaChangeEnv<CR>
+
+" Key bindings for virtualenv selection. ,va/,vd/,vl
+map <Leader>va :VirtualEnvActivate<Space>
+map <silent> <Leader>vd :VirtualEnvDeactivate<CR>
+map <silent> <Leader>vl :VirtualEnvList<CR>
+
+" call ApplyLocalSettings(expand('.'))
