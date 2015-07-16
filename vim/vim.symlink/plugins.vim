@@ -23,6 +23,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'davidhalter/jedi-vim' " Python auto-completion
+Plugin 'scrooloose/syntastic' " Syntax checker, also has Python linter
 
 " Allows virtualenv environment switching
 " using :VirtualEnvDeactivate
@@ -32,6 +33,9 @@ Plugin 'jmcantrell/vim-virtualenv'
 
 " colorschemes
 Plugin 'chriskempson/base16-vim'
+
+" Support for ctags
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on

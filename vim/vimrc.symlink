@@ -34,10 +34,12 @@ set completeopt+=longest " selects the longest/best match when completion menu p
 " better indent in visual mode (stop vim from deselecting on an indentation change)
 vnoremap < <gv
 vnoremap > >gv
+" Make . repeat commands on each selected line when in visual mode
+vnoremap . :normal .<CR>
 
 if has('mouse')
     set mouse=a
-    set ttymouse=xterm2
+    " set ttymouse=xterm2
 endif
 
 " Allow regular copy-paste from vim to normal clipboard
@@ -87,8 +89,34 @@ endif
 " code folding settings
 set foldmethod=syntax " fold based on syntax
 set foldnestmax=10 " deepest fold is 10 levels
-set nofoldenable " don't fold by default
+" set nofoldenable " don't fold by default
 set foldlevel=1
+
+" Map space to toggle folding on/off
+nnoremap <space> za
+" vnoremap <space> zf " Only works in manual mode
+
+
+" Automatically open, but do not go to (if there are errors) the quickfix /
+" location list window, or close it when is has become empty.
+"
+" Note: Must allow nesting of autocmds to enable any customizations for quickfix
+" buffers.
+" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+" (but not if it's already open). However, as part of the autocmd, this doesn't
+" seem to happen.
+nnoremap <leader>j :silent make\|redraw!\|cw<CR>
+nnoremap <silent> <leader>q :bd<CR>
+
+" Automatically close quickfix window if we quit the tab
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
+" Set buffer (e.g. when quickfix opens the file with an error)
+" to open an existing tab if available, otherwise open a new tab
+set switchbuf+=usetab,newtab
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
@@ -126,6 +154,8 @@ set tm=500
 
 " switch syntax highlighting on
 syntax on
+" Enable filetype specific indentation
+filetype indent plugin on
 
 set encoding=utf8
 let base16colorspace=256 " Access colors present in 256 colorspace
@@ -286,7 +316,7 @@ let g:NERDTreeQuitOnOpen=1
 " show hidden files in NERDTree
 let NERDTreeShowHidden=1
 " remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
+let NERDTreeIgnore = ['\.js.map$', '\.pyc$']
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
@@ -373,3 +403,37 @@ map <silent> <Leader>vd :VirtualEnvDeactivate<CR>
 map <silent> <Leader>vl :VirtualEnvList<CR>
 
 " call ApplyLocalSettings(expand('.'))
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Mark syntax errors with :signs
+let g:syntastic_enable_signs=1
+
+" Do not automatically jump to the error  when saving the file
+" Jump feature is annoying because it automatically moves the cursor
+let g:syntastic_auto_jump=0
+
+" Show the error list automatically
+" Allows you to easily navigate the quick fix list
+let g:syntastic_auto_loc_list=1
+
+" Setup the style and syntax checkers for Python
+" let g:syntastic_python_checkers=['pep8', 'pylint', 'python']
+let g:syntastic_python_checkers=['pep8', 'flake8', 'python']
+
+" let g:syntastic_always_populate_loc_list=1
+" let g:syntastic_check_on_open=1
+" let g:syntastic_check_on_wq=0
+
+" map <leader>err :Errors<cr>
+" map <leader>err :Errors<cr>
+
+" Set tagbar toggle to leader c
+nmap <silent> <leader>c :TagbarToggle<CR>
+" Look for tags file in current directory and
+" recursively search up until root
+set tags=./tags;/
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>

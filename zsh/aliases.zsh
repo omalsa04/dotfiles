@@ -25,3 +25,6 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 
 # cls for clear screen
 alias cls="clear"
+
+# replace vim with nvim
+# alias vim="nvim"

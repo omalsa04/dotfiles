@@ -18,6 +18,9 @@ export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
 
+# Source virtualenvwrapper setup script
+source /usr/local/bin/virtualenvwrapper.sh
+
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/sbin:$PATH

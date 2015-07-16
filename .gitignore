@@ -1,1 +1,5 @@
+# Ignore all files in bundle directory
 vim/vim.symlink/bundle/
+
+# Except Vundle.git (subtree)
+!vim/vim.symlink/bundle/Vundle.git
