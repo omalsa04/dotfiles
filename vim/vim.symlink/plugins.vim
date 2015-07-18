@@ -37,5 +37,8 @@ Plugin 'chriskempson/base16-vim'
 " Support for ctags
 Plugin 'majutsushi/tagbar'
 
+" Support for puppet syntax
+Plugin 'puppetlabs/puppet-syntax-vim'
+
 call vundle#end()
 filetype plugin indent on
