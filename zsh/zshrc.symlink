@@ -19,7 +19,7 @@ export EDITOR='vim'
 export PATH=/usr/local/bin:$PATH
 
 # Source virtualenvwrapper setup script
-source /usr/local/bin/virtualenvwrapper.sh
+[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
@@ -50,3 +50,6 @@ fi
 
 BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
 source $BASE16_SHELL
+
+# Set boxen environment
+[[ -f /opt/boxen/env.sh ]] && source /opt/boxen/env.sh

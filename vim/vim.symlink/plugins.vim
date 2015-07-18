@@ -38,7 +38,8 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'majutsushi/tagbar'
 
 " Support for puppet syntax
-Plugin 'puppetlabs/puppet-syntax-vim'
+" Disabled because I was getting segfaults
+" Plugin 'puppetlabs/puppet-syntax-vim'
 
 call vundle#end()
 filetype plugin indent on

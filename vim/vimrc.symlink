@@ -437,3 +437,8 @@ nmap <silent> <leader>c :TagbarToggle<CR>
 set tags=./tags;/
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+
+
+nmap <leader>l :set list!<cr>
