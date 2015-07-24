@@ -53,3 +53,20 @@ source $BASE16_SHELL
 
 # Set boxen environment
 [[ -f /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
+
+# Disable pip outside of a virtualenv
+export PIP_REQUIRE_VIRTUALENV=true
+
+# Print out system information with archey
+archey
+
+# gpip can be used to explicitly call
+# pip from outside of a Virtual Env
+gpip(){
+	PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+# gpip can be used to explicitly call
+# pip3 from outside of a Virtual Env
+gpip3(){
+	PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
