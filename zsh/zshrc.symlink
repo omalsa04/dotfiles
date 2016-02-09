@@ -58,7 +58,7 @@ source $BASE16_SHELL
 export PIP_REQUIRE_VIRTUALENV=true
 
 # Print out system information with archey
-archey -c
+# archey -c
 
 # gpip can be used to explicitly call
 # pip from outside of a Virtual Env
