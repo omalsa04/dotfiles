@@ -18,7 +18,7 @@ source install/link.sh
     #source installosx.sh
 #fi
 
-#echo "Configuring zsh as default shell"
-#chsh -s $(which zsh)
+echo "Configuring zsh as default shell"
+chsh -s $(which zsh)
 
 echo "Done."
