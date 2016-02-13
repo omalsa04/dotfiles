@@ -33,6 +33,7 @@ Plugin 'jmcantrell/vim-virtualenv'
 
 " colorschemes
 Plugin 'chriskempson/base16-vim'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Support for ctags
 Plugin 'majutsushi/tagbar'
