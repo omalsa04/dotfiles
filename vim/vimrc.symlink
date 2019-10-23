@@ -31,6 +31,12 @@ set shiftwidth=4 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 set completeopt+=longest " selects the longest/best match when completion menu pops up
 
+" Set some handy shortcuts for tab navigation
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
+
 " better indent in visual mode (stop vim from deselecting on an indentation change)
 vnoremap < <gv
 vnoremap > >gv
