@@ -42,5 +42,9 @@ Plugin 'majutsushi/tagbar'
 " Disabled because I was getting segfaults
 " Plugin 'puppetlabs/puppet-syntax-vim'
 
+Plugin 'tpope/vim-markdown'
+Plugin 'wavded/vim-stylus.git'
+
+
 call vundle#end()
 filetype plugin indent on
