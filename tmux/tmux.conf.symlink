@@ -61,7 +61,15 @@ bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # synchronize all panes in a window
-bind y setw synchronize-panes
+bind  y if -F '#{pane_synchronized}' \
+                     'setw synchronize-panes off; \
+                      setw pane-active-border-style fg=$tm_color_active; \
+                      setw pane-border-style fg=$tm_color_inactive; \
+                      setw pane-border-format       " #P "' \
+                   'setw synchronize-panes on; \
+                    setw pane-active-border-style fg=red; \
+					setw pane-border-style fg=yellow; \
+                    setw pane-border-format       " #P - Pane Synchronization ON "'
 
 # pane movement shortcuts
 bind h select-pane -L
