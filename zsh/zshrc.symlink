@@ -55,6 +55,9 @@ source $BASE16_SHELL
 # Disable pip outside of a virtualenv
 export PIP_REQUIRE_VIRTUALENV=true
 
+# Alias chrome
+alias chrome='open -a "Google Chrome"'
+
 # Print out system information with archey
 # archey -c
 
