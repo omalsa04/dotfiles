@@ -17,6 +17,7 @@ compinit
 export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/opt/bin:$PATH
 
 # Source virtualenvwrapper setup script
 [[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
