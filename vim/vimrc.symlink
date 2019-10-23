@@ -70,6 +70,8 @@ if has('autocmd') && !exists('autocommands_loaded')
     autocmd FileType .xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
     "autocmd WinEnter * setlocal cursorline
     "autocmd WinLeave * setlocal nocursorline
+    autocmd FileType cpp setlocal expandtab tabstop=2 shiftwidth=2
+
 
     " automatically resize panes on resize
     autocmd VimResized * exe 'normal! \<c-w>='
