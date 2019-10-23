@@ -117,3 +117,7 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 ##############################
 
 source ~/.dotfiles/tmux/theme.sh
+
+# Override status-left to indicate if prefix is pressed
+set -g status-left '#{?client_prefix,#[fg=yellow bold][#S] ,[#S] }'
+
