@@ -20,6 +20,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/opt/bin:$PATH
 
 # Source virtualenvwrapper setup script
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 [[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # add /usr/local/sbin
@@ -71,3 +72,8 @@ gpip(){
 gpip3(){
 	PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export HUB_PROTOCOL=ssh
+

@@ -25,6 +25,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'davidhalter/jedi-vim' " Python auto-completion
 Plugin 'scrooloose/syntastic' " Syntax checker, also has Python linter
 
+Plugin 'lepture/vim-jinja'
+
 " Allows virtualenv environment switching
 " using :VirtualEnvDeactivate
 "		:VirtualEnvList
@@ -44,6 +46,8 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'tpope/vim-markdown'
 Plugin 'wavded/vim-stylus.git'
+
+Plugin 'vimwiki/vimwiki'
 
 
 call vundle#end()

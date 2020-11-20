@@ -160,3 +160,8 @@ def pu
     end
   end
 end
+
+define hook-next
+  refresh
+end
+

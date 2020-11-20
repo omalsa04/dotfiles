@@ -61,9 +61,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 if has('autocmd') && !exists('autocommands_loaded')
     let autocommands_loaded = 1
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType vimwiki setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=*<return>
     autocmd FileType jade setlocal ts=2 sts=2 sw=2 noexpandtab
     autocmd FileType *.md.js :call SyntasticReset<cr>
     autocmd FileType markdown,textile setlocal textwidth=0 wrapmargin=0 wrap spell
@@ -71,6 +72,10 @@ if has('autocmd') && !exists('autocommands_loaded')
     "autocmd WinEnter * setlocal cursorline
     "autocmd WinLeave * setlocal nocursorline
     autocmd FileType cpp setlocal expandtab tabstop=2 shiftwidth=2
+
+
+	" Regenerate vimwiki diary links automatically
+	autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
 
 
     " automatically resize panes on resize
@@ -98,7 +103,7 @@ endif
 set foldmethod=syntax " fold based on syntax
 set foldnestmax=10 " deepest fold is 10 levels
 " set nofoldenable " don't fold by default
-set foldlevel=1
+set foldlevel=99
 
 " Map space to toggle folding on/off
 nnoremap <space> za
@@ -333,7 +338,7 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
 nmap <silent> <leader>t :CtrlPCurWD<cr>
-nmap <silent> <leader>tb :CtrlPBuffer<cr>
+nmap <silent> <leader>r :CtrlPBuffer<cr>
 let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
@@ -431,9 +436,24 @@ let g:syntastic_auto_loc_list=1
 " Setup the style and syntax checkers for Python
 " let g:syntastic_python_checkers=['pep8', 'pylint', 'python']
 let g:syntastic_python_checkers=['pep8', 'flake8', 'python']
+let g:syntastic_python_flake_args='--ignore=E501'
+let g:syntastic_python_pep8_args='--ignore=E501'
 
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler_options = ' -std=c++17 -stdlib=libc++'
+
+" Vimwiki Options
+let wiki = {}
+let wiki.path = '~/vimwiki/'
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'css': 'css', 'html': 'html', 'javascript': 'javascript'}
+let g:vimwiki_list = [wiki]
+
+" Clang Format:
+function FormatFile()
+	let l:lines="all"
+	py3f /usr/local/Cellar/clang-format/10.0.0/share/clang/clang-format.py
+endfunction
+map <leader>u :call FormatFile()<cr>
 
 " let g:syntastic_always_populate_loc_list=1
 " let g:syntastic_check_on_open=1
